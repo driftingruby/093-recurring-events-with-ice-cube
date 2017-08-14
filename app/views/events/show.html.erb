@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>occurence:</strong>
+  <%= @event.occurence %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @event.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @event.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event.schedule.occurrences_between(Date.today, @event.end_date) .each do |date| %>
+    <%# @event.schedule.occurrences(@event.end_date).each do |date| %>
+    <tr>
+      <td><%= @event.name %></td>
+      <td><%= l date %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
